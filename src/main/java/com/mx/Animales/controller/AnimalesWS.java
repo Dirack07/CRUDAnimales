@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mx.Animales.dominio.Animales;
@@ -45,6 +46,16 @@ public class AnimalesWS {
 	@DeleteMapping("eliminar/{id}")
 	public void eliminar(@PathVariable int id) {
 		service.eliminar(id);
+	}
+	
+	@GetMapping("buscarPorNombre/{nombre}")
+	public Animales buscarPorNombre(@PathVariable String nombre) {
+		return service.buscarPorNombre(nombre);
+	}
+	
+	@GetMapping("buscarPorTipo")
+	public List<Animales> buscarPorTipo(@RequestParam String tipo){
+		return service.buscarPorTipo(tipo);
 	}
 	
 }
